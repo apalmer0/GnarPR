@@ -61,14 +61,15 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'gnar-style', require: false
-  gem 'pronto'
   gem 'pronto-brakeman', require: false
   gem 'pronto-rubocop', require: false
   gem 'pronto-scss', require: false
+  gem 'pronto'
   gem 'pry-rails'
   gem 'rspec-its'
   gem 'rspec-rails'
   gem 'scss_lint', require: false
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'timecop'
 end

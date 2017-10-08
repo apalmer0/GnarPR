@@ -1,0 +1,6 @@
+json.url pull_request.url
+json.comments_count pull_request.comments_count
+json.approved pull_request.approved
+json.review_requested pull_request.review_requested
+json.files_changed_count pull_request.files_changed_count
+json.commits_count pull_request.commits_count

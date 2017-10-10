@@ -5,9 +5,19 @@ describe "Pull Requests", type: :request do
     describe "A valid request" do
       let(:params) do
         {
-          pull_request: {
-            url: "https://github.com/TheGnarCo/gladlydo-client/pull/742",
-          }
+          token: Rails.application.secrets.slack_api_key,
+          team_id: "T0001",
+          team_domain: "example",
+          enterprise_id: "E0001",
+          enterprise_name: "Globular%20Construct%20Inc",
+          channel_id: "C2147483705",
+          channel_name: "test",
+          user_id: "U2147483697",
+          user_name: "Steve",
+          command: "/weather",
+          text: "https://github.com/TheGnarCo/gladlydo-client/pull/742",
+          response_url: "https://hooks.slack.com/commands/1234/5678",
+          trigger_id: "13345224609.738474920.8088930838d88f008e0",
         }
       end
 
@@ -42,9 +52,19 @@ describe "Pull Requests", type: :request do
       context "when a url is not provided" do
         let(:params) do
           {
-            pull_request: {
-              url: "",
-            }
+            token: Rails.application.secrets.slack_api_key,
+            team_id: "T0001",
+            team_domain: "example",
+            enterprise_id: "E0001",
+            enterprise_name: "Globular%20Construct%20Inc",
+            channel_id: "C2147483705",
+            channel_name: "test",
+            user_id: "U2147483697",
+            user_name: "Steve",
+            command: "/weather",
+            text: "",
+            response_url: "https://hooks.slack.com/commands/1234/5678",
+            trigger_id: "13345224609.738474920.8088930838d88f008e0",
           }
         end
 

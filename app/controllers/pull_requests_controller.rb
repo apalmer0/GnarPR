@@ -1,6 +1,6 @@
 class PullRequestsController < ApplicationController
   def create
-    @pull_request = PullRequest.new(pull_request_params)
+    @pull_request = PullRequest.new({ url: params[:text] })
     respond_to do |format|
       if @pull_request.save
         format.json
@@ -8,18 +8,5 @@ class PullRequestsController < ApplicationController
         format.json { render json: @pull_request.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  private
-
-  def pull_request_params
-    params.require(:pull_request).permit(
-      :url,
-      :comments_count,
-      :approved,
-      :review_requested,
-      :files_changed_count,
-      :commits_count,
-    )
   end
 end

@@ -37,14 +37,13 @@ describe "Pull Requests", type: :request do
       it "correctly serializes the response" do
         post pull_requests_path, params: params.to_json, headers: json_headers
 
-        expect(json_response(response)["pull_request"].keys).to match_array([
-          "url",
-          "comments_count",
-          "approved",
-          "review_requested",
-          "files_changed_count",
-          "commits_count",
+        expect(json_response(response).keys).to match_array([
+          "response_type",
+          "text",
+          "attachments",
         ])
+        expect(json_response(response)["attachments"].first.values.first).to include(params[:text])
+        expect(json_response(response)["response_type"]).to eq ("in_channel")
       end
     end
 
@@ -68,17 +67,22 @@ describe "Pull Requests", type: :request do
           }
         end
 
-        it "returns 422 - unprocessable entity" do
+        it "returns 200" do
           post pull_requests_path, params: params.to_json, headers: json_headers
 
-          expect(response.status).to eq 422
+          expect(response.status).to eq 200
         end
 
         it "returns the correct errors" do
           post pull_requests_path, params: params.to_json, headers: json_headers
 
-          expect(json_response(response)["url"]).to be_present
-          expect(json_response(response)["url"].first).to eq "can't be blank"
+          expect(json_response(response).keys).to match_array([
+            "response_type",
+            "text",
+            "attachments",
+          ])
+          expect(json_response(response)["attachments"].first.values.first).to include(params[:text])
+          expect(json_response(response)["response_type"]).to eq ("ephemeral")
         end
       end
     end
